@@ -1011,7 +1011,7 @@ var trackdirect = {
       host: "www.aprsdirect.com",
       baseUrl: "https://www.aprsdirect.com",
 
-      defaultTimeLength: 60,
+      defaultTimeLength: 720,
 
       symbolsToScale: [],
 
