@@ -16,7 +16,7 @@ trackdirect.models.MapState.prototype._init = function () {
   // Booleans that controls what is visible
   this.isGhostMarkersVisible = false;
   this.isCwopMarkersVisible = true;
-  this.isStationaryMarkersVisible = true;
+  this.isStationaryMarkersVisible = false;
   this.isInternetMarkersVisible = true;
   this.isUnknownMarkersVisible = true;
   this.isOgflymMarkersVisible = true;
