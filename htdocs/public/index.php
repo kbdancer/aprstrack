@@ -98,8 +98,8 @@
                 options['animate'] = true;
 
                 // Use Stockholm as default position (will be used if we fail to fetch location from ip-location service)
-                options['defaultLatitude'] = '26.07590';
-                options['defaultLongitude'] = '119.30157';
+                options['defaultLatitude'] = '26.0383';
+                options['defaultLongitude'] = '119.3211';
 
                 // Tip: request position from some ip->location service (https://freegeoip.app/json and https://ipapi.co/json is two examples)
 //                 $.getJSON('https://ipapi.co/json', function(data) {

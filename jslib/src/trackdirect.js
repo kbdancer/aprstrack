@@ -1002,8 +1002,8 @@ var trackdirect = {
       markerSymbolBaseDir: "/symbols/",
       imagesBaseDir: "/images/",
 
-      defaultCurrentZoom: 11,
-      defaultCurrentZoomMobile: 11,
+      defaultCurrentZoom: 10,
+      defaultCurrentZoomMobile: 10,
 
       dateFormat: "L LTSZ",
       dateFormatNoTimeZone: "L LTS",
