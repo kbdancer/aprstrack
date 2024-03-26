@@ -2114,7 +2114,7 @@ var trackdirect = {
 
     if (this._statusContainerElementId !== null) {
       $("#" + this._statusContainerElementId)
-        .html("Connected")
+        .html("已连接")
         .css("color", "green");
     }
   },
@@ -2189,7 +2189,7 @@ var trackdirect = {
     // APRS-IS Connection is up for this area!
     if (this._statusContainerElementId !== null) {
       $("#" + this._statusContainerElementId)
-        .html("Connected to APRS feed")
+        .html("已连接")
         .css("color", "green");
     }
   },
