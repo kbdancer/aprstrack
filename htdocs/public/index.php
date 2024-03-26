@@ -194,7 +194,7 @@
                     <a href="javascript:void(0);" onclick="trackdirect.setTimeLength(1440); $('#tdTopnavTimelength>a').removeClass('dropdown-content-checkbox-active'); $(this).addClass('dropdown-content-checkbox-active');" class="dropdown-content-checkbox">24 小时</a>
                 </div>
             </div>
-
+            <!--
             <div class="dropdown">
                 <button class="dropbtn">地图 API
                     <i class="fa fa-caret-down"></i>
@@ -224,7 +224,7 @@
                 </div>
             </div>
             <?php endif; ?>
-
+            -->
             <div class="dropdown">
                 <button class="dropbtn">设置
                     <i class="fa fa-caret-down"></i>
