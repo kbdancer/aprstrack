@@ -445,16 +445,14 @@ var trackdirect = {
     if (coveragePolygon !== null && coveragePolygon.isRequestedToBeVisible()) {
       coveragePolygon.hide();
       if (coverageLinkElementClass !== null) {
-        $("." + coverageLinkElementClass).html("Coverage");
+        $("." + coverageLinkElementClass).html("显示覆盖范围");
       }
     } else {
       if (coveragePolygon !== null) {
         coveragePolygon.show();
 
         if (!coveragePolygon.hasContent()) {
-          alert(
-            "Currently we do not have enough data to create a max range coverage plot for this station. Try again later!"
-          );
+          alert("目前没有足够的数据来生成此台站的最大覆盖范围，请稍后再试！");
         } else {
           if (coverageLinkElementClass !== null) {
             $("." + coverageLinkElementClass).html("Hide coverage");
@@ -487,12 +485,10 @@ var trackdirect = {
             function () {
               if (!coveragePolygon.hasContent()) {
                 coveragePolygon.hide();
-                alert(
-                  "Currently we do not have enough data to create a max range coverage plot for this station. Try again later!"
-                );
-                $("." + coverageLinkElementClass).html("Coverage");
+                alert("目前没有足够的数据来生成此台站的最大覆盖范围，请稍后再试！");
+                $("." + coverageLinkElementClass).html("显示覆盖范围");
               } else {
-                $("." + coverageLinkElementClass).html("Hide coverage");
+                $("." + coverageLinkElementClass).html("隐藏覆盖范围");
               }
             },
             true
@@ -515,7 +511,7 @@ var trackdirect = {
           .fail(function () {
             coveragePolygon.hide();
             alert("Failed to fetch coverage data. Try again later!");
-            $("." + coverageLinkElementClass).html("Coverage");
+            $("." + coverageLinkElementClass).html("显示覆盖范围");
           })
           .always(function () {});
       }

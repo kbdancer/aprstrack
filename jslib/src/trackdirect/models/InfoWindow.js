@@ -1395,9 +1395,9 @@ trackdirect.models.InfoWindow.prototype._getMenuDivCoverageLink = function () {
     this._marker.packet.station_id
   );
   if (coveragePolygon !== null && coveragePolygon.isRequestedToBeVisible()) {
-    menuLink.html("Hide Coverage");
+    menuLink.html("隐藏覆盖范围");
   } else {
-    menuLink.html("Coverage");
+    menuLink.html("显示覆盖范围");
   }
   menuLi.append(menuLink);
   return menuLi;
