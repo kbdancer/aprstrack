@@ -98,57 +98,58 @@
                 options['animate'] = true;
 
                 // Use Stockholm as default position (will be used if we fail to fetch location from ip-location service)
-                options['defaultLatitude'] = '59.30928';
-                options['defaultLongitude'] = '18.08830';
+                options['defaultLatitude'] = '26.07590';
+                options['defaultLongitude'] = '119.30157';
 
                 // Tip: request position from some ip->location service (https://freegeoip.app/json and https://ipapi.co/json is two examples)
-                $.getJSON('https://ipapi.co/json', function(data) {
-                    if (data.latitude && data.longitude) {
-                        options['defaultLatitude'] = data.latitude;
-                        options['defaultLongitude'] = data.longitude;
-                    }
-                }).fail(function() {
-                    console.log('Failed to fetch location, using default location');
-                }).always(function() {
-                    <?php if ($mapapi == 'leaflet-vector') : ?>
-                        options['mapboxGLStyle'] = "https://api.maptiler.com/maps/bright/style.json?optimize=true&key=<?php echo getWebsiteConfig('maptiler_key'); ?>";
-                        options['mapboxGLAttribution'] = 'Map &copy; <a href="https://www.maptiler.com">MapTiler</a>, OpenStreetMap contributors';
+//                 $.getJSON('https://ipapi.co/json', function(data) {
+//                     if (data.latitude && data.longitude) {
+//                         options['defaultLatitude'] = data.latitude;
+//                         options['defaultLongitude'] = data.longitude;
+//                     }
+//                 }).fail(function() {
+//                     console.log('Failed to fetch location, using default location');
+//                 }).always(function() {
+//
+//                 });
+                <?php if ($mapapi == 'leaflet-vector') : ?>
+                    options['mapboxGLStyle'] = "https://api.maptiler.com/maps/bright/style.json?optimize=true&key=<?php echo getWebsiteConfig('maptiler_key'); ?>";
+                    options['mapboxGLAttribution'] = 'Map &copy; <a href="https://www.maptiler.com">MapTiler</a>, OpenStreetMap contributors';
+                <?php endif; ?>
+
+                <?php if ($mapapi == 'leaflet') : ?>
+                    // We are using Leaflet -- read about leaflet-providers and select your favorite maps
+                    // https://leaflet-extras.github.io/leaflet-providers/preview/
+
+                    // Make sure to read the license requirements for each provider before launching a public website
+                    // https://wiki.openstreetmap.org/wiki/Tile_servers
+
+                    // Many providers require a map api key or similar, the following is an example for HERE
+                    L.TileLayer.Provider.providers['HERE'].options['app_id'] = '<?php echo getWebsiteConfig('here_app_id'); ?>';
+                    L.TileLayer.Provider.providers['HERE'].options['app_code'] = '<?php echo getWebsiteConfig('here_app_code'); ?>';
+
+                    options['supportedMapTypes'] = {};
+                    options['supportedMapTypes']['roadmap'] = "<?php echo getWebsiteConfig('leaflet_raster_tile_roadmap'); ?>";
+                    options['supportedMapTypes']['terrain'] = "<?php echo getWebsiteConfig('leaflet_raster_tile_terrain'); ?>";
+                    options['supportedMapTypes']['satellite'] = "<?php echo getWebsiteConfig('leaflet_raster_tile_satellite'); ?>";
+                <?php endif; ?>
+
+                // host is used to create url to /heatmaps and /images
+                options['host'] = "<?php echo $_SERVER['HTTP_HOST']; ?>";
+
+                var supportsWebSockets = 'WebSocket' in window || 'MozWebSocket' in window;
+                if (supportsWebSockets) {
+                   <?php if (getWebsiteConfig('websocket_url') != null) : ?>
+                       var wsServerUrl = "<?php echo getWebsiteConfig('websocket_url'); ?>";
+                    <?php else : ?>
+                        var wsServerUrl = 'ws://<?php echo $_SERVER['HTTP_HOST']; ?>:9000/ws';
                     <?php endif; ?>
+                    var mapElementId = 'map-container';
 
-                    <?php if ($mapapi == 'leaflet') : ?>
-                        // We are using Leaflet -- read about leaflet-providers and select your favorite maps
-                        // https://leaflet-extras.github.io/leaflet-providers/preview/
-
-                        // Make sure to read the license requirements for each provider before launching a public website
-                        // https://wiki.openstreetmap.org/wiki/Tile_servers
-
-                        // Many providers require a map api key or similar, the following is an example for HERE
-                        L.TileLayer.Provider.providers['HERE'].options['app_id'] = '<?php echo getWebsiteConfig('here_app_id'); ?>';
-                        L.TileLayer.Provider.providers['HERE'].options['app_code'] = '<?php echo getWebsiteConfig('here_app_code'); ?>';
-
-                        options['supportedMapTypes'] = {};
-                        options['supportedMapTypes']['roadmap'] = "<?php echo getWebsiteConfig('leaflet_raster_tile_roadmap'); ?>";
-                        options['supportedMapTypes']['terrain'] = "<?php echo getWebsiteConfig('leaflet_raster_tile_terrain'); ?>";
-                        options['supportedMapTypes']['satellite'] = "<?php echo getWebsiteConfig('leaflet_raster_tile_satellite'); ?>";
-                    <?php endif; ?>
-
-                    // host is used to create url to /heatmaps and /images
-                    options['host'] = "<?php echo $_SERVER['HTTP_HOST']; ?>";
-
-                    var supportsWebSockets = 'WebSocket' in window || 'MozWebSocket' in window;
-		    if (supportsWebSockets) {
-                       <?php if (getWebsiteConfig('websocket_url') != null) : ?>
-                           var wsServerUrl = "<?php echo getWebsiteConfig('websocket_url'); ?>";
-                        <?php else : ?>
-                            var wsServerUrl = 'ws://<?php echo $_SERVER['HTTP_HOST']; ?>:9000/ws';
-                        <?php endif; ?>
-                        var mapElementId = 'map-container';
-
-                        trackdirect.init(wsServerUrl, mapElementId, options);
-                    } else {
-                        alert('This service require HTML 5 features to be able to feed you APRS data in real-time. Please upgrade your browser.');
-                    }
-                });
+                    trackdirect.init(wsServerUrl, mapElementId, options);
+                } else {
+                    alert('This service require HTML 5 features to be able to feed you APRS data in real-time. Please upgrade your browser.');
+                }
             });
         </script>
     </head>
