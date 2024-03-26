@@ -262,11 +262,11 @@
                         最近听到
                     </a>
 
-                    <a href="javascript:void(0);"
+                    <!--<a href="javascript:void(0);"
                         onclick="$('#modal-timetravel').show();"
                         title="Select date and time to show what the map looked like then">
                         Travel in time
-                    </a>
+                    </a>-->
 
                     <a class="triple-notselected" href="#" onclick="trackdirect.togglePHGCircles(); return false;" title="Show PHG cirlces, first click will show half PGH circles and second click will show full PHG circles.">
                         覆盖圈
