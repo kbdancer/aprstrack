@@ -274,11 +274,11 @@
                 </div>
             </div>
 
-{/*             <a href="/views/about.php" */}
-{/*                 class="tdlink" */}
-{/*                 title="More about this website!"> */}
-{/*                 关于 */}
-{/*             </a> */}
+            <!--<a href="/views/about.php"
+                class="tdlink"
+                title="More about this website!">
+                关于
+            </a>-->
 
             <a href="javascript:void(0);" class="icon" onclick="toggleTopNav()">&#9776;</a>
         </div>
